@@ -14,11 +14,11 @@ interface IDayDesign {
 
 const DayComponent = styled.div<IDayDesign>`
   display: flex;
-  -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
-  align-items: center; /* 縦方向中央揃え */
-  -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
-  justify-content: center; /* 横方向中央揃え */
-  border-radius: 2px;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  border-radius: 4px;
   height: ${(props) => durationHeight(props.duration)};
   width: 60px;
   margin: 4px;
@@ -41,7 +41,7 @@ const durationColor = (duration: string) => {
 
 const durationHeight = (duration: string) => {
   const durationNum = parseInt(duration, 10);
-  const height = `${durationNum * 1.2 + 20}px`;
+  const height = `${durationNum * 1.5 + 20}px`;
   console.log(height);
   return height;
 };
