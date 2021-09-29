@@ -1,4 +1,6 @@
 import raw from "raw.macro";
+import styled from "styled-components";
+import { DayUnit } from "./components/visualize";
 
 function App() {
   const rawCSV = raw("../AutoSleep-UTF8.csv"); //とりあえず自分のテストデータを入れる
@@ -38,16 +40,20 @@ function App() {
     .slice(1);
 
   return (
-    <div>
+    <Days>
       {rows.map((col: ICol) => (
-        <div style={{ textAlign: "center" }}>
-          <span>Start: {col.startTime} </span>
-          <span>End: {col.endTime} </span>
-          <span>Duration: {col.duration} </span>
-        </div>
+        <DayUnit duration={col.duration} />
       ))}
-    </div>
+    </Days>
   );
 }
+
+const Days = styled.div`
+  width: calc(70px * 7);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+` as any;
 
 export default App;
