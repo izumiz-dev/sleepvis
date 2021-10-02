@@ -20,7 +20,6 @@ function App() {
     annotation: string; //  注釈
   }
 
-  type rowsType = ICol | null;
   const rows: any = rawCSV
     .split("\n")
     .map((line) => {
@@ -50,10 +49,12 @@ function App() {
   for (let i = 0; i < rows.length - 1; i++) {
     if (rows[i] === null) continue;
     const diff = rows[i + 1].endTime.diff(rows[i].endTime, "days");
-    if (diff.days > 2) {
-      rows.splice(i + 1, 0, null);
-      console.log(i + 1);
-      console.log(rows[i].endTime.toFormat("MM/dd"));
+    const diffDays = Math.floor(diff.days);
+    // console.log("DIFF:", `${rows[i].endTime}`, diffDays);
+    if (diffDays >= 2) {
+      for (let j = 1; j < diffDays; j++) {
+        rows.splice(i + j, 0, null);
+      }
     }
   }
 
