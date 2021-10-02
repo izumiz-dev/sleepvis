@@ -42,6 +42,5 @@ const durationColor = (duration: string) => {
 const durationHeight = (duration: string) => {
   const durationNum = parseInt(duration, 10);
   const height = `${durationNum * 1.5 + 20}px`;
-  console.log(height);
   return height;
 };
