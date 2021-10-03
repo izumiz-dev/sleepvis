@@ -1,92 +1,55 @@
-import raw from "raw.macro";
 import styled from "styled-components";
 import { DayUnit } from "./components/visualize";
-import { DateTime } from "luxon";
+import { useEffect, useState } from "react";
+import { FileInput } from "./components/FileInput";
+import { ICol, parseCSV } from "./Logic/parseCSV";
 
-function App() {
-  const rawCSV = raw("../AutoSleep-UTF8.csv"); //とりあえず自分のテストデータを入れる
+export const App = () => {
+  const [inputFile, setInputFile] = useState<File | undefined>();
+  const [readCSV, setReadCSV] = useState<string>("");
 
-  interface ICol {
-    startTime: DateTime; //  睡眠開始時刻
-    endTime: DateTime; //  睡眠終了時刻
-    duration: string; //  Duration
-    sleepTime: string; //  睡眠時間
-    wakingInBed: string; //  ベッドで起きていた時間
-    timeToSleep: string; //  眠りにつくまでの時間
-    goodQuality: string; //  良質な睡眠
-    deepSleep: string; //  深い睡眠
-    heartRate: string; //  心拍数
-    tag: string; //  タグ
-    annotation: string; //  注釈
-  }
-
-  const rows: any = rawCSV
-    .split("\n")
-    .map((line) => {
-      const lineCols = line.split(",");
-      return {
-        startTime: DateTime.fromFormat(lineCols[0], "yyyy-MM-dd HH:mm:ss"),
-        endTime: DateTime.fromFormat(lineCols[1], "yyyy-MM-dd HH:mm:ss"),
-        duration: lineCols[2],
-        sleepTime: lineCols[3],
-        wakingInBed: lineCols[4],
-        timeToSleep: lineCols[5],
-        goodQuality: lineCols[6],
-        deepSleep: lineCols[7],
-        heartRate: lineCols[8],
-        tag: lineCols[9],
-        annotation: lineCols[10],
-      };
-    })
-    .slice(1);
-
-  if (rows[0].endTime.weekday !== 7) {
-    const padNum = 7 - rows[0].endTime.weekday + 1;
-    const spaces = new Array(padNum).fill(null);
-    rows.unshift(...spaces);
-  }
-
-  for (let i = 0; i < rows.length - 1; i++) {
-    if (rows[i] === null) continue;
-    const diff = rows[i + 1].endTime.diff(rows[i].endTime, "days");
-    const diffDays = Math.floor(diff.days);
-    // console.log("DIFF:", `${rows[i].endTime}`, diffDays);
-    if (diffDays >= 2) {
-      for (let j = 1; j < diffDays; j++) {
-        rows.splice(i + j, 0, null);
-      }
+  useEffect(() => {
+    if (inputFile) {
+      const reader = new FileReader();
+      reader.onload = () => setReadCSV(reader.result as string);
+      reader.readAsText(inputFile, "UTF-8");
     }
-  }
+  }, [inputFile]);
+
+  const rows = parseCSV(readCSV);
 
   return (
     <>
       <OuterContainer>
         <Title>睡眠時間</Title>
-        <Days>
-          {rows.map((col: ICol) => {
-            if (col === null) {
-              return (
-                <Frame>
-                  <Date>{""}</Date>
-                  <DayUnit duration={""} />
-                </Frame>
-              );
-            }
-            if (col.endTime !== undefined) {
-              return (
-                <Frame>
-                  <Date>{col.endTime.setLocale("jp").toFormat("M/d")}</Date>
-                  <DayUnit duration={col.sleepTime} />
-                </Frame>
-              );
-            }
-            return null;
-          })}
-        </Days>
+        <FileInput setInputFile={setInputFile} />
+        {rows && (
+          <Days>
+            {rows.map((col: ICol) => {
+              if (col === null) {
+                return (
+                  <Frame>
+                    <Date>{""}</Date>
+                    <DayUnit duration={""} />
+                  </Frame>
+                );
+              }
+              if (col.endTime !== undefined) {
+                return (
+                  <Frame>
+                    <Date>{col.endTime.setLocale("jp").toFormat("M/d")}</Date>
+                    <DayUnit duration={col.sleepTime} />
+                  </Frame>
+                );
+              }
+              return null;
+            })}
+          </Days>
+        )}
       </OuterContainer>
     </>
   );
-}
+};
 
 const OuterContainer = styled.div`
   margin-top: 2em;
@@ -123,5 +86,3 @@ const Days = styled.div`
   flex-wrap: wrap;
   align-items: flex-end;
 ` as any;
-
-export default App;
