@@ -6,11 +6,11 @@ export const parseCSV = (csvString: string) => {
   }
   // CSVString を オブジェクトの配列に
 
-  const origin: any = csvString.split("\r\n");
+  const origin = csvString.split("\r\n");
   origin.pop();
 
-  const rows: any = origin
-    .map((line: any) => {
+  const rows: ICol[] = origin
+    .map((line) => {
       const lineCols = line.split(",");
       return {
         startTime: DateTime.fromFormat(lineCols[0], "yyyy-MM-dd HH:mm:ss"),
@@ -28,27 +28,47 @@ export const parseCSV = (csvString: string) => {
     })
     .slice(1);
 
-  // 開始時点の曜日を揃えるために空白(null)を追加
-  if (rows[0].endTime.weekday !== 7) {
-    const padNum = 7 - rows[0].endTime.weekday + 1;
-    const spaces = new Array(padNum).fill(null);
-    rows.unshift(...spaces);
+  interface IDateMappedRow {
+    [key: string]: ICol;
   }
 
-  // 記録されてないデータがある場合に，空白(null)を追加
-  // バグってるというかこの処理の方法がだと対処できてない
-  for (let i = 0; i < rows.length - 1; i++) {
-    if (rows[i] === null) continue;
-    const diff = rows[i + 1].endTime.diff(rows[i].endTime, "days");
-    const diffDays = Math.floor(diff.days);
-    if (diffDays >= 2) {
-      for (let j = 1; j < diffDays; j++) {
-        rows.splice(i + j, 0, null);
-      }
+  const dateMappedRows: IDateMappedRow = rows.reduce(
+    (obj, data) => ({
+      ...obj,
+      [data.endTime.toFormat("yyyy-MM-dd-EEE")]: data,
+    }),
+    {}
+  );
+
+  const initDateTime: DateTime =
+    rows[0].endTime.weekday !== 7
+      ? rows[0].endTime.startOf("week").minus({ days: 1 })
+      : rows[0].endTime.startOf("day");
+
+  const endDateTime: DateTime = rows[rows.length - 1].endTime
+    .endOf("week")
+    .startOf("day");
+
+  const durationDays = endDateTime.diff(initDateTime, "days").days;
+
+  const calendar: Array<Array<ICol | string>> = [];
+
+  let weekNum = 0;
+  for (let i = 0; i < durationDays; i++) {
+    const cnt = initDateTime.plus({ days: i });
+    const date = cnt.toFormat("yyyy-MM-dd-EEE");
+    if (weekNum === calendar.length) {
+      calendar.push([]);
+    }
+
+    calendar[weekNum].push(dateMappedRows[date] ? dateMappedRows[date] : date);
+
+    if (i % 7 === 6) {
+      weekNum++;
     }
   }
 
-  return rows;
+  return calendar;
 };
 
 export interface ICol {

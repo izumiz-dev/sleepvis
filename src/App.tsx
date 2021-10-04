@@ -16,33 +16,53 @@ export const App = () => {
     }
   }, [inputFile]);
 
-  const rows = parseCSV(readCSV);
+  const calendar = parseCSV(readCSV);
 
   return (
     <>
       <OuterContainer>
-        <Title>睡眠時間</Title>
+        <Title>Sleepvis</Title>
+        <Message>
+          AutosleepアプリのCSVを可視化するWebアプリです．
+          <br />
+          随時機能追加中です．現状は，睡眠時間の表示機能のみになります．
+          <br />
+          下のファイルを選択ボタンからエクスポートしたCSVファイルを選択してください．
+        </Message>
         <FileInput setInputFile={setInputFile} />
-        {rows && (
+        <Days>
+          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
+            (dayOfWeek) => {
+              return (
+                <Frame>
+                  <DayUnit duration={dayOfWeek} />
+                </Frame>
+              );
+            }
+          )}
+        </Days>
+        {calendar && (
           <Days>
-            {rows.map((col: ICol) => {
-              if (col === null) {
+            {calendar.flat().map((col: ICol | string) => {
+              console.log(col);
+              if (typeof col !== "string" && col.endTime !== undefined) {
                 return (
                   <Frame>
-                    <Date>{""}</Date>
-                    <DayUnit duration={""} />
-                  </Frame>
-                );
-              }
-              if (col.endTime !== undefined) {
-                return (
-                  <Frame>
-                    <Date>{col.endTime.setLocale("jp").toFormat("M/d")}</Date>
+                    <Date>{col.endTime.setLocale("jp").toFormat("MM/dd")}</Date>
                     <DayUnit duration={col.sleepTime} />
                   </Frame>
                 );
+              } else {
+                return (
+                  <Frame>
+                    <Date>{`${col
+                      .toString()
+                      .substring(5, 10)
+                      .replace("-", "/")}`}</Date>
+                    <DayUnit duration={"NoData"} />
+                  </Frame>
+                );
               }
-              return null;
             })}
           </Days>
         )}
@@ -63,9 +83,14 @@ const Title = styled.h1`
   color: #ffffff;
 `;
 
+const Message = styled.div`
+  color: #ffffff;
+`;
+
 const Date = styled.div`
   color: white;
-` as any;
+  margin-top: 2px;
+`;
 
 const Frame = styled.div`
   display: flex;
@@ -77,7 +102,7 @@ const Frame = styled.div`
   /* border-radius: 4px; */
   background: linear-gradient(#08176d99, #01010799);
   margin: 1px;
-` as any;
+`;
 
 const Days = styled.div`
   width: calc(74px * 7);
@@ -85,4 +110,4 @@ const Days = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-end;
-` as any;
+`;

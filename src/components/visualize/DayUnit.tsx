@@ -35,7 +35,7 @@ const durationColor = (duration: string) => {
   } else if (durationNum >= 2) {
     return "#DD0000dd";
   } else {
-    return "#FFFFFF";
+    return "#000000dd";
   }
 };
 
