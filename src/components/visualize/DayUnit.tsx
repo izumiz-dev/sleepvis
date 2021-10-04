@@ -28,7 +28,9 @@ const DayComponent = styled.div<IDayDesign>`
 
 const durationColor = (duration: string) => {
   const durationNum = parseInt(duration, 10);
-  if (durationNum >= 6) {
+  if (durationNum >= 8) {
+    return "#43a2e2dd";
+  } else if (durationNum >= 6) {
     return "#54c454dd";
   } else if (durationNum >= 4) {
     return "#c47636dd";
