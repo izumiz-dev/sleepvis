@@ -6,7 +6,6 @@ export const Calendar = ({ calendar }: { calendar: (string | ICol)[][] }) => {
   return (
     <Days>
       {calendar.flat().map((col: ICol | string) => {
-        console.log(col);
         if (typeof col !== "string" && col.endTime !== undefined) {
           return (
             <Frame>

@@ -1,11 +1,17 @@
+import { Duration } from "luxon";
 import styled from "styled-components";
 
 interface IDay {
-  duration: string;
+  duration: Duration | string;
 }
 
 export const DayUnit = ({ duration }: IDay) => {
-  return <DayComponent duration={duration}>{duration}</DayComponent>;
+  return (
+    <DayComponent duration={duration}>
+      {/* Duration | string のため string でないとき Duration 型になるので， その場合は toFormat で文字列へ */}
+      {typeof duration !== "string" ? duration.toFormat("hh:mm") : duration}
+    </DayComponent>
+  );
 };
 
 interface IDayDesign {
@@ -26,8 +32,9 @@ const DayComponent = styled.div<IDayDesign>`
   background: ${(props) => durationColor(props.duration)};
 ` as any;
 
-const durationColor = (duration: string) => {
-  const durationNum = parseInt(duration, 10);
+const durationColor = (duration: Duration | string) => {
+  const durationNum =
+    typeof duration === "string" ? parseInt(duration) : duration.hours;
   if (durationNum >= 8) {
     return "#43a2e2dd";
   } else if (durationNum >= 6) {
@@ -41,8 +48,8 @@ const durationColor = (duration: string) => {
   }
 };
 
-const durationHeight = (duration: string) => {
-  const durationNum = parseInt(duration, 10);
-  const height = `${durationNum * 1.5 + 20}px`;
-  return height;
+const durationHeight = (duration: Duration | string) => {
+  const durationNum =
+    typeof duration === "string" ? parseInt(duration) : duration.hours;
+  return `${durationNum * 1.5 + 20}px`;
 };
