@@ -11,7 +11,14 @@ export const Calendar = ({ calendar }: { calendar: (string | ICol)[][] }) => {
           return (
             <>
               <Frame>
-                <Date>{col.endTime.setLocale("jp").toFormat("MM.dd")}</Date>
+                <DateHeader>
+                  <Date>{col.endTime.setLocale("jp").toFormat("MM.dd")}</Date>
+                  <TimesBox>
+                    <div>🛌{col.startTime.toFormat("HH:mm")}</div>
+                    <div>🛏{col.endTime.toFormat("HH:mm")}</div>
+                    <div>❤️{col.heartRate}</div>
+                  </TimesBox>
+                </DateHeader>
                 <div
                   style={{
                     display: "flex",
@@ -65,4 +72,16 @@ const Unit = styled.div`
   flex-flow: column;
   justify-content: flex-end;
   align-items: center;
+`;
+
+const DateHeader = styled.div`
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+`;
+
+const TimesBox = styled.div`
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-left: 1rem;
 `;

@@ -64,5 +64,5 @@ const durationColor = (duration: Duration | string, sleepType?: string) => {
 const durationHeight = (duration: Duration | string) => {
   const durationNum =
     typeof duration === "string" ? parseInt(duration) : duration.hours;
-  return `${durationNum * 10 + 20}px`;
+  return `${durationNum * 8 + 16}px`;
 };

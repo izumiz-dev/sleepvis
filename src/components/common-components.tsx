@@ -20,7 +20,7 @@ export const Date = styled.div`
   /* color: white; */
   font-weight: 500;
   margin-top: 2px;
-  font-size: 1.5rem;
+  font-size: 2.25rem;
 `;
 
 export const Frame = styled.div`
