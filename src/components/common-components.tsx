@@ -26,14 +26,15 @@ export const Frame = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-flow: column;
-  height: 80px;
+  height: 100px;
   border: 1px ridge #ffffff99;
   background: linear-gradient(#08176d99, #01010799);
-  margin: 1px;
+  margin: 2px 1px;
+  border-radius: 4px;
 `;
 
 export const Days = styled.div`
-  width: calc(74px * 7);
+  width: calc(208px * 7);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

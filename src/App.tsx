@@ -31,7 +31,7 @@ export const App = () => {
           下のファイルを選択ボタンからエクスポートしたCSVファイルを選択してください．
         </Message>
         <FileInput setInputFile={setInputFile} />
-        <DayOfWeek />
+        {/* <DayOfWeek /> */}
         {calendar && <Calendar calendar={calendar} />}
       </OuterContainer>
     </>

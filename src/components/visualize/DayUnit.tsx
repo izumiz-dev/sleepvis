@@ -40,11 +40,13 @@ const durationColor = (duration: Duration | string) => {
   } else if (durationNum >= 6) {
     return "#54c454dd";
   } else if (durationNum >= 4) {
-    return "#c47636dd";
+    return "#ac692bdd";
   } else if (durationNum >= 2) {
-    return "#DD0000dd";
+    return "#dd5100dd";
+  } else if (durationNum >= 0) {
+    return "#FF0000dd";
   } else {
-    return "#000000dd";
+    return "#5e5e5edd";
   }
 };
 
