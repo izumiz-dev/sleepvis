@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/sleepvis/static/css/main.1d74c633.chunk.css",
-    "main.js": "/sleepvis/static/js/main.00799352.chunk.js",
-    "main.js.map": "/sleepvis/static/js/main.00799352.chunk.js.map",
+    "main.js": "/sleepvis/static/js/main.b6db13d8.chunk.js",
+    "main.js.map": "/sleepvis/static/js/main.b6db13d8.chunk.js.map",
     "runtime-main.js": "/sleepvis/static/js/runtime-main.2c7cd044.js",
     "runtime-main.js.map": "/sleepvis/static/js/runtime-main.2c7cd044.js.map",
     "static/js/2.77af509d.chunk.js": "/sleepvis/static/js/2.77af509d.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.2c7cd044.js",
     "static/js/2.77af509d.chunk.js",
     "static/css/main.1d74c633.chunk.css",
-    "static/js/main.00799352.chunk.js"
+    "static/js/main.b6db13d8.chunk.js"
   ]
 }
