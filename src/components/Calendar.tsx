@@ -60,15 +60,23 @@ export const Calendar = ({
             } else {
               return (
                 <Frame>
-                  <Date
-                    dayOfWeek={
-                      DateTime.fromFormat(col.toString(), "yyyy-MM-dd-EEE")
-                        .weekday
-                    }
-                  >{`${col
-                    .toString()
-                    .substring(5, 10)
-                    .replace("-", ".")}`}</Date>
+                  <DateHeader>
+                    <Date
+                      dayOfWeek={
+                        DateTime.fromFormat(col.toString(), "yyyy-MM-dd-EEE")
+                          .weekday
+                      }
+                    >{`${col
+                      .toString()
+                      .substring(5, 10)
+                      .replace("-", ".")}`}</Date>
+                    <TimesBox>
+                      <div>🛌--:--</div>
+                      <div>🛏--:--</div>
+                      <div>❤️--</div>
+                    </TimesBox>
+                  </DateHeader>
+
                   <div
                     style={{
                       display: "flex",
