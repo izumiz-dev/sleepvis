@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/sleepvis/static/css/main.1d74c633.chunk.css",
-    "main.js": "/sleepvis/static/js/main.b6db13d8.chunk.js",
-    "main.js.map": "/sleepvis/static/js/main.b6db13d8.chunk.js.map",
+    "main.js": "/sleepvis/static/js/main.147d2bdf.chunk.js",
+    "main.js.map": "/sleepvis/static/js/main.147d2bdf.chunk.js.map",
     "runtime-main.js": "/sleepvis/static/js/runtime-main.2c7cd044.js",
     "runtime-main.js.map": "/sleepvis/static/js/runtime-main.2c7cd044.js.map",
-    "static/js/2.77af509d.chunk.js": "/sleepvis/static/js/2.77af509d.chunk.js",
-    "static/js/2.77af509d.chunk.js.map": "/sleepvis/static/js/2.77af509d.chunk.js.map",
+    "static/js/2.1b28a215.chunk.js": "/sleepvis/static/js/2.1b28a215.chunk.js",
+    "static/js/2.1b28a215.chunk.js.map": "/sleepvis/static/js/2.1b28a215.chunk.js.map",
     "static/js/3.bad054d2.chunk.js": "/sleepvis/static/js/3.bad054d2.chunk.js",
     "static/js/3.bad054d2.chunk.js.map": "/sleepvis/static/js/3.bad054d2.chunk.js.map",
     "index.html": "/sleepvis/index.html",
     "static/css/main.1d74c633.chunk.css.map": "/sleepvis/static/css/main.1d74c633.chunk.css.map",
-    "static/js/2.77af509d.chunk.js.LICENSE.txt": "/sleepvis/static/js/2.77af509d.chunk.js.LICENSE.txt"
+    "static/js/2.1b28a215.chunk.js.LICENSE.txt": "/sleepvis/static/js/2.1b28a215.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2c7cd044.js",
-    "static/js/2.77af509d.chunk.js",
+    "static/js/2.1b28a215.chunk.js",
     "static/css/main.1d74c633.chunk.css",
-    "static/js/main.b6db13d8.chunk.js"
+    "static/js/main.147d2bdf.chunk.js"
   ]
 }
