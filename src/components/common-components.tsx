@@ -16,8 +16,8 @@ export const Message = styled.div`
   /* color: #ffffff; */
 `;
 
-export const Date = styled.div`
-  /* color: white; */
+export const Date = styled.div<{ dayOfWeek?: number }>`
+  color: ${(props) => dayOfWeekColor(props.dayOfWeek || 9999)};
   font-weight: 500;
   margin-top: 2px;
   font-size: 2.25rem;
@@ -42,3 +42,13 @@ export const Days = styled.div`
   flex-wrap: wrap;
   align-items: flex-end;
 `;
+
+const dayOfWeekColor = (dayOfWeek: number) => {
+  if (dayOfWeek === 6) {
+    return "#0000dd";
+  }
+  if (dayOfWeek === 7) {
+    return "#dd0000";
+  }
+  return "black";
+};

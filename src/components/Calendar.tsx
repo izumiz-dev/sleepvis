@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import styled from "styled-components";
 import { ICol } from "../Logic/parseCSV";
 import { Days, Date, Frame } from "./common-components";
@@ -18,7 +19,7 @@ export const Calendar = ({
                 <>
                   <Frame>
                     <DateHeader>
-                      <Date>
+                      <Date dayOfWeek={col.endTime.weekday}>
                         {col.endTime.setLocale("jp").toFormat("MM.dd")}
                       </Date>
                       <TimesBox>
@@ -59,7 +60,12 @@ export const Calendar = ({
             } else {
               return (
                 <Frame>
-                  <Date>{`${col
+                  <Date
+                    dayOfWeek={
+                      DateTime.fromFormat(col.toString(), "yyyy-MM-dd-EEE")
+                        .weekday
+                    }
+                  >{`${col
                     .toString()
                     .substring(5, 10)
                     .replace("-", ".")}`}</Date>
