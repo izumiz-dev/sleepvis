@@ -1,5 +1,5 @@
 import { Days, Frame } from "./common-components";
-import { DayUnit } from "./visualize";
+import { DayUnit } from "./visualize/DayUnit";
 
 export const DayOfWeek = () => {
   return (

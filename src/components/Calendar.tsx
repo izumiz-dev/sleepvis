@@ -1,6 +1,6 @@
 import { ICol } from "../Logic/parseCSV";
 import { Days, Date, Frame } from "./common-components";
-import { DayUnit } from "./visualize";
+import { DayUnit } from "./visualize/DayUnit";
 
 export const Calendar = ({ calendar }: { calendar: (string | ICol)[][] }) => {
   return (
