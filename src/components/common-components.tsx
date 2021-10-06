@@ -9,32 +9,34 @@ export const OuterContainer = styled.div`
 `;
 
 export const Title = styled.h1`
-  color: #ffffff;
+  /* color: #ffffff; */
 `;
 
 export const Message = styled.div`
-  color: #ffffff;
+  /* color: #ffffff; */
 `;
 
 export const Date = styled.div`
-  color: white;
+  /* color: white; */
+  font-weight: 500;
   margin-top: 2px;
+  font-size: 1.5rem;
 `;
 
 export const Frame = styled.div`
+  padding: 4px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-flow: column;
-  height: 100px;
-  border: 1px ridge #ffffff99;
-  background: linear-gradient(#08176d99, #01010799);
-  margin: 2px 1px;
-  border-radius: 4px;
+  height: 200px;
+  margin: 4px;
+  border-radius: 8px;
+  background: #eeeeee;
 `;
 
 export const Days = styled.div`
-  width: calc(208px * 7);
+  width: calc(220px * 7);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

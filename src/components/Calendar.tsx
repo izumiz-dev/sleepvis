@@ -11,7 +11,7 @@ export const Calendar = ({ calendar }: { calendar: (string | ICol)[][] }) => {
           return (
             <>
               <Frame>
-                <Date>{col.endTime.setLocale("jp").toFormat("MM/dd")}</Date>
+                <Date>{col.endTime.setLocale("jp").toFormat("MM.dd")}</Date>
                 <div
                   style={{
                     display: "flex",
@@ -20,16 +20,16 @@ export const Calendar = ({ calendar }: { calendar: (string | ICol)[][] }) => {
                   }}
                 >
                   <Unit>
-                    <div style={{ color: "white" }}>Total</div>
-                    <DayUnit duration={col.sleepTime} />
+                    <DayUnit duration={col.sleepTime} sleepType="sleepTime" />
                   </Unit>
                   <Unit>
-                    <div style={{ color: "white" }}>Good</div>
-                    <DayUnit duration={col.goodQuality} />
+                    <DayUnit
+                      duration={col.goodQuality}
+                      sleepType="goodQuality"
+                    />
                   </Unit>
                   <Unit>
-                    <div style={{ color: "white" }}>Deep</div>
-                    <DayUnit duration={col.deepSleep} />
+                    <DayUnit duration={col.deepSleep} sleepType="deepSleep" />
                   </Unit>
                 </div>
               </Frame>
@@ -41,7 +41,7 @@ export const Calendar = ({ calendar }: { calendar: (string | ICol)[][] }) => {
               <Date>{`${col
                 .toString()
                 .substring(5, 10)
-                .replace("-", "/")}`}</Date>
+                .replace("-", ".")}`}</Date>
               <div
                 style={{
                   display: "flex",
@@ -61,9 +61,8 @@ export const Calendar = ({ calendar }: { calendar: (string | ICol)[][] }) => {
 };
 
 const Unit = styled.div`
-  height: 70px;
   display: flex;
   flex-flow: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 `;

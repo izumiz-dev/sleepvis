@@ -16,7 +16,7 @@ export const FileInput = ({ setInputFile }: IInputFile) => {
 
   return (
     // <>
-    <div style={{ background: "#FFFFFFDD", padding: "4px", margin: "8px" }}>
+    <div style={{ padding: "4px", margin: "8px" }}>
       <input type="file" accept="text" onChange={onUploadImage} />
     </div>
     // </>
