@@ -3,9 +3,9 @@ import { DateTime, Duration } from "luxon";
 export const parseCSV = (csvString: string) => {
   // 初期状態．CSVが読み込まれる前
   if (csvString === "") {
-    return false;
+    return null;
   }
-  const origin = csvString.split("\r\n");
+  const origin = csvString.split("\n");
   // 先頭の行を削除
   origin.shift();
   // 末尾の行を削除
