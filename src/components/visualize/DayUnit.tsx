@@ -30,8 +30,8 @@ const DayComponent = styled.div<IDayDesign>`
   justify-content: center;
   border-radius: 8px;
   height: ${(props) => durationHeight(props.duration)};
-  width: 60px;
-  margin: 4px;
+  width: 3vw;
+  margin: 0.5vw;
   /* color: white; */
   background: ${(props) => durationColor(props.duration, props.sleepType)};
 ` as any;

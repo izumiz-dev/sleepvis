@@ -88,7 +88,7 @@ const DateHeader = styled.div`
 `;
 
 const TimesBox = styled.div`
-  font-size: 0.75rem;
+  font-size: 0.75em;
   font-weight: 500;
   margin-left: 1rem;
 `;
@@ -100,7 +100,7 @@ const GraphsBox = styled.div`
 `;
 
 const NoDataComponent = styled.div`
-  width: 204px;
+  width: calc(9vw + 3vw);
   height: 100px;
   display: flex;
   justify-content: center;
